@@ -1,0 +1,13 @@
+#gameBoard {
+    height: 500px;
+    width: 500px;
+    border: 1px solid green;
+    background-color: green;
+    text-align: center;
+    margin-top: 200px;
+    margin-left: 200px;
+}
+
+body {
+    text-align: center;
+}
