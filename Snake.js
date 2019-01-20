@@ -1,6 +1,6 @@
 class Snake {
     constructor() {
-        this.arr = [[5,5], [6,5]];
+        this.arr = [{x: 6,y: 5}, {x: 5, y: 5}, ];
         this.direction = 2;
         this.speed = 1;
         document.addEventListener('keydown', this.input);
@@ -29,41 +29,34 @@ class Snake {
         console.log(this.direction);
         if (this.direction == -1) return;
 
-        var firstElement = this.arr[0];
-        for (let i=0; i < this.arr.length-1; i++) {
-            this.arr[i] = this.arr[i+1];
-        }
-        var lastElement = this.arr.pop();
-        
+        var firstElement = {x: this.arr[0].x, y: this.arr[0].y};
+        console.log(this.arr);
         switch (this.direction) {
             case 0:
-                lastElement[0] -= this.speed;
+                firstElement.x -= this.speed;
                 break;
             case 1: 
-                lastElement[1] -= this.speed;
+                firstElement.y -= this.speed;
                 break;
             case 2:
-                lastElement[0] += this.speed;
+                firstElement.x += this.speed;
                 break;
             case 3:
-                lastElement[1] += this.speed;
+                firstElement.y += this.speed;
                 break;
             default:
                 break;
         }
 
-        this.arr.push(lastElement);
-        console.log(firstElement);
-        // repaint the board
-        // ctx.fillStyle = 'green';     
-        // ctx.fillRect(firstElement[0] * size, firstElement[1] * size, size, size);
+        this.arr.pop();
+        this.arr.unshift(firstElement);
+        console.log(this.arr);
     }
     draw() {
-        this.update();
         for (var rect of this.arr) {
-            //console.log('draw' + rect);
             ctx.fillStyle = 'black';
-            ctx.fillRect(rect[0]*size, rect[1]*size, size, size)
+            ctx.fillRect(rect.x*size, rect.y*size, size, size)
         }
+        this.update();
     }
 }
