@@ -9,5 +9,6 @@ class Board {
                 ctx.fillRect(i * size, j * size, size, size);
             }
         }
+        
     }
 }
